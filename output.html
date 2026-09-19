@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Subset Construction - NFA to DFA</title><style>
+:root{--bg:#f3f5fb;--card:#fff;--text:#1b2236;--muted:#6f7a93;--line:#e4e9f3;
+--accent:#5b5bd6;--accent-soft:#e7e7fb;--final:#0e9f8b;--final-soft:#ddf5f0;
+--edge:#77829e;--shadow:0 10px 34px rgba(27,34,54,.08)}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1120;--card:#161b2e;--text:#e8ecf7;
+--muted:#8f99b5;--line:#252c44;--accent:#8f8fff;--accent-soft:#25274d;--final:#2fd6ba;
+--final-soft:#113a3b;--edge:#8b95b4;--shadow:none}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:56px 24px 72px;color:#fff;
+background:linear-gradient(135deg,#4338ca 0%,#6d5bf0 45%,#0ea5a4 100%)}
+header .in,main{max-width:1080px;margin:0 auto}
+header h1{margin:0 0 6px;font-size:34px;letter-spacing:-.02em}
+header p{margin:0;opacity:.88;font-size:16px}
+main{padding:0 20px 56px;margin-top:-40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;
+box-shadow:var(--shadow);padding:28px;margin-bottom:28px}
+.card h2{margin:0 0 14px;font-size:22px;letter-spacing:-.01em}
+.card h3{margin:26px 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--accent-soft);color:var(--accent);border-radius:999px;
+padding:4px 13px;font-size:13px;font-weight:600}
+.chip b{color:var(--text);font-weight:700}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;padding:6px}
+svg{display:block;max-width:none;margin:0 auto}
+.edge{fill:none;stroke:var(--edge);stroke-width:1.7}
+.arrow{fill:var(--edge)}
+.body{fill:var(--card);stroke:var(--accent);stroke-width:2}
+.start .body{fill:var(--accent-soft)}
+.ring{fill:none;stroke:var(--final);stroke-width:2}
+.final .body{stroke:var(--final)}
+.final .ring{fill:var(--final-soft)}
+.dead .body{stroke:var(--muted);stroke-dasharray:5 4}
+.node text{font:600 13px ui-monospace,SFMono-Regular,Consolas,monospace;fill:var(--text);
+text-anchor:middle;dominant-baseline:central}
+.lbl{font:700 13px ui-monospace,SFMono-Regular,Consolas,monospace;fill:var(--accent);
+text-anchor:middle;dominant-baseline:central;stroke:var(--card);stroke-width:5;
+paint-order:stroke;stroke-linejoin:round}
+.init{stroke:var(--accent);stroke-width:2.4;fill:none}
+.arrow-i{fill:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;color:var(--muted);font-size:13px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--accent-soft)}
+td.m,th.m{width:1%;white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.empty{color:var(--muted)}
+.badge{display:inline-block;border-radius:6px;padding:1px 8px;margin-right:4px;font-size:11px;
+font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.b-start{background:var(--accent-soft);color:var(--accent)}
+.b-final{background:var(--final-soft);color:var(--final)}
+details{margin-top:22px}
+summary{cursor:pointer;color:var(--muted);font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:13px;padding-bottom:36px}
+</style></head>
+<body><header><div class="in"><h1>Subset Construction</h1>
+<p>NFA → DFA · 1 case</p></div></header>
+<main><section class="card"><h2>Case 1</h2><div class="chips"><span class="chip">NFA states <b>5</b></span><span class="chip">Alphabet <b>a b</b></span><span class="chip">DFA states <b>7</b></span><span class="chip">Final states <b>4</b></span><span class="chip">Start <b>{3 5}</b></span></div>
+<h3>Diagram</h3><div class="scroll"><svg xmlns="http://www.w3.org/2000/svg" width="552" height="588" viewBox="0 0 552 588" role="img" aria-label="DFA diagram"><defs><marker id="arrow-1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z"/></marker><marker id="init-1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="arrow-i" d="M0 0L10 5L0 10z"/></marker></defs><path class="edge" marker-end="url(#arrow-1)" d="M145.8 282.9 Q203.6 263.5 248.7 248.3"/><text class="lbl" x="207.4" y="274.9">a</text><path class="edge" marker-end="url(#arrow-1)" d="M145.8 305.1 Q203.6 324.5 263.7 344.7"/><text class="lbl" x="199.8" y="335.9">b</text><path class="edge" marker-end="url(#arrow-1)" d="M323.6 213.2 Q384.8 172.0 447.1 130.1"/><text class="lbl" x="391.5" y="182.0">a</text><path class="edge" marker-end="url(#arrow-1)" d="M346.4 233.0 Q384.8 233.0 435.4 233.0"/><text class="lbl" x="384.8" y="245.0">b</text><path class="edge" marker-end="url(#arrow-1)" d="M324.2 355.0 Q384.8 355.0 442.4 355.0"/><text class="lbl" x="384.8" y="367.0">a</text><path class="edge" marker-end="url(#arrow-1)" d="M310.0 375.4 Q364.7 445.9 444.2 468.2"/><text class="lbl" x="368.0" y="440.9">b</text><path class="edge" marker-end="url(#arrow-1)" d="M461.4 88.8 C439.4 40.8 511.4 40.8 487.4 87.8"/><text class="lbl" x="475.4" y="46.8">a</text><path class="edge" marker-end="url(#arrow-1)" d="M459.3 132.6 Q384.8 233.0 311.3 331.9"/><text class="lbl" x="375.2" y="225.8">b</text><path class="edge" marker-end="url(#arrow-1)" d="M475.4 209.0 Q475.4 172.0 475.4 138.0"/><text class="lbl" x="487.4" y="172.0">a</text><path class="edge" marker-end="url(#arrow-1)" d="M461.4 210.8 C439.4 162.8 511.4 162.8 487.4 209.8"/><text class="lbl" x="475.4" y="168.8">b</text><path class="edge" marker-end="url(#arrow-1)" d="M461.4 333.8 C439.4 285.8 511.4 285.8 487.4 332.8"/><text class="lbl" x="475.4" y="291.8">a,b</text><path class="edge" marker-end="url(#arrow-1)" d="M483.2 453.8 Q537.4 294.0 484.3 137.3"/><text class="lbl" x="518.4" y="294.0">a</text><path class="edge" marker-end="url(#arrow-1)" d="M459.6 456.6 Q404.9 386.1 325.4 363.8"/><text class="lbl" x="401.6" y="391.1">b</text><line class="init" marker-end="url(#init-1)" x1="30.0" y1="294.0" x2="74.0" y2="294.0"/><g class="node start"><ellipse class="body" cx="113.0" cy="294.0" rx="37.0" ry="24"/><text x="113.0" y="294.0">{3 5}</text></g><g class="node final"><ellipse class="body" cx="294.2" cy="233.0" rx="52.2" ry="24"/><ellipse class="ring" cx="294.2" cy="233.0" rx="47.2" ry="19"/><text x="294.2" y="233.0">{1 2 4 5}</text></g><g class="node final"><ellipse class="body" cx="294.2" cy="355.0" rx="30.0" ry="24"/><ellipse class="ring" cx="294.2" cy="355.0" rx="25.0" ry="19"/><text x="294.2" y="355.0">{4}</text></g><g class="node final"><ellipse class="body" cx="475.4" cy="111.0" rx="37.0" ry="24"/><ellipse class="ring" cx="475.4" cy="111.0" rx="32.0" ry="19"/><text x="475.4" y="111.0">{1 5}</text></g><g class="node final"><ellipse class="body" cx="475.4" cy="233.0" rx="37.0" ry="24"/><ellipse class="ring" cx="475.4" cy="233.0" rx="32.0" ry="19"/><text x="475.4" y="233.0">{4 5}</text></g><g class="node dead"><ellipse class="body" cx="475.4" cy="355.0" rx="30.0" ry="24"/><text x="475.4" y="355.0">∅</text></g><g class="node"><ellipse class="body" cx="475.4" cy="477.0" rx="30.0" ry="24"/><text x="475.4" y="477.0">{5}</text></g></svg></div>
+<div class="legend"><span>→ initial state</span><span>◎ double ring = final state</span>
+<span>┅ dashed = empty set ∅ (printed as 0 in the console)</span></div>
+<h3>Transition table (DFA)</h3><div class="scroll"><table><thead><tr><th class="m"></th>
+<th>State</th><th>a</th><th>b</th></tr></thead><tbody><tr><td class="m"><span class="badge b-start">start</span></td><td class="mono"><b>{3 5}</b></td><td class="mono">{1 2 4 5}</td><td class="mono">{4}</td></tr><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>{1 2 4 5}</b></td><td class="mono">{1 5}</td><td class="mono">{4 5}</td></tr><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>{4}</b></td><td class="mono empty">∅</td><td class="mono">{5}</td></tr><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>{1 5}</b></td><td class="mono">{1 5}</td><td class="mono">{4}</td></tr><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>{4 5}</b></td><td class="mono">{1 5}</td><td class="mono">{4 5}</td></tr><tr><td class="m"></td><td class="mono"><b>∅</b></td><td class="mono empty">∅</td><td class="mono empty">∅</td></tr><tr><td class="m"></td><td class="mono"><b>{5}</b></td><td class="mono">{1 5}</td><td class="mono">{4}</td></tr></tbody></table></div>
+<details><summary>Input NFA</summary><div class="scroll" style="margin-top:12px"><table><thead>
+<tr><th class="m"></th><th>State</th><th>a</th><th>b</th></tr></thead><tbody><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>1</b></td><td class="mono">{1 5}</td><td class="mono empty">∅</td></tr><tr><td class="m"></td><td class="mono"><b>2</b></td><td class="mono">{1}</td><td class="mono empty">∅</td></tr><tr><td class="m"><span class="badge b-start">start</span></td><td class="mono"><b>3</b></td><td class="mono">{2 4}</td><td class="mono empty">∅</td></tr><tr><td class="m"><span class="badge b-final">final</span></td><td class="mono"><b>4</b></td><td class="mono empty">∅</td><td class="mono">{5}</td></tr><tr><td class="m"><span class="badge b-start">start</span></td><td class="mono"><b>5</b></td><td class="mono">{1 5}</td><td class="mono">{4}</td></tr></tbody></table></div>
+</details></section></main>
+<footer>Generated by subset_construction.py · SI2002 Formal Languages</footer></body></html>
