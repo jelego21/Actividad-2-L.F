@@ -78,7 +78,7 @@ Then open the report with `start output.html` or by double-clicking the file. Th
 
 ### 4.3 Typing the input by hand
 
-Run `python subset_construction.py`, paste the input lines, press enter, then `Ctrl+Z` and finish with `Enter` (Windows). The result appears after that.
+Run `python subset_construction.py`, paste the input lines, and finish with `Ctrl+Z` then `Enter` (Windows). The result appears after that.
 
 ### 4.4 Run button (▶) of VS Code
 
@@ -147,4 +147,58 @@ Output for the example of section 5:
 
 ## 7. How the algorithm works
 
-L
+Let the NFA be `N = (Q, Σ, Δ, S, F)`. The program builds the DFA `M` in these steps:
+
+1. **Parse.** Each case is stored as a dictionary that maps every `(state, symbol)` pair to a set of states.
+2. **Start state.** The initial state of `M` is the whole set `S`.
+3. **Transition rule.** For a DFA state `A` (a set of NFA states) and a symbol `a`, the next state is `Δ(q, a)` united over every `q` in `A`.
+4. **Exploration.** A queue starts with `S`. Each time a new set appears as a target it is stored and queued, and the loop ends when the queue is empty. This is a breadth-first search, so only reachable states are built.
+5. **Final states.** A DFA state is final when it shares at least one element with `F`.
+6. **Determinism.** Symbols are read in alphabet order and states are numbered by discovery order, so the same input always gives the same output.
+
+Worked step from the example: `δ({3,5}, a) = Δ(3,a) ∪ Δ(5,a) = {2,4} ∪ {1,5} = {1,2,4,5}`.
+
+In the worst case the DFA has up to `2^n` states, but reachable states are usually far fewer (here 7 out of 32).
+
+**Why it is correct.** By induction on the length of a word `x`, after reading `x` the DFA is in exactly the set of NFA states that can be reached from `S` by reading `x`. That set contains a final state exactly when the NFA can accept `x`, which is the rule used to mark the final states, so both automata accept the same language.
+
+## 8. Optional feature: HTML report
+
+With `--html`, the program also writes a self-contained web page (no internet or libraries needed). For each case it shows:
+
+- a drawing of the DFA, with an arrow into the initial state, double rings on final states and a dashed circle for the empty set;
+- the DFA transition table;
+- a collapsible copy of the input NFA.
+
+## 9. Extra test
+
+Input (NFA that accepts the strings ending in `ab`):
+
+```
+1
+3
+1
+a b
+3
+1 {1 2} {1}
+2 0 {3}
+3 0 0
+```
+
+Expected output:
+
+```
+         a     b
+-> {1}   {1 2} {1}
+   {1 2} {1 2} {1 3}
+<- {1 3} {1 2} {1}
+```
+
+## 10. Limitations and assumptions
+
+- States are the numbers `1..n` and the alphabet is made of lowercase letters, as stated in the assignment.
+- The input must follow the format of section 5; there is no error handling for malformed files.
+
+## Reference
+
+Kozen, Dexter C. (1997). *Automata and Computability*. 1st. Berlin, Heidelberg: Springer-Verlag. https://doi.org/10.1007/978-1-4612-1844-9
