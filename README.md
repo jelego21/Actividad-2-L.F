@@ -78,7 +78,7 @@ Then open the report with `start output.html` or by double-clicking the file. Th
 
 ### 4.3 Typing the input by hand
 
-Run `python subset_construction.py`, paste the input lines, and finish with `Ctrl+Z` then `Enter` (Windows). The result appears after that.
+Run `python subset_construction.py`, paste the input lines, press enter, then `Ctrl+Z` and finish with `Enter` (Windows). The result appears after that.
 
 ### 4.4 Run button (▶) of VS Code
 
