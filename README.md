@@ -6,20 +6,20 @@ Assignment 2 of **SI2002 Formal Languages**. The program reads one or more nonde
 
 | Field | Value |
 |-------|-------|
-| Full name | [ ________________________ ] |
-| Class number | [ ________ ] |
+| Students | Jerónimo Ledesma & Katherine Nocua|
+| Class number | SI2002 |
 | Course | SI2002 Formal Languages |
 | Professor | Sergio Ramírez Rico |
 | University | EAFIT |
-| Delivery date | [ ________ ] |
+| Delivery date | 20/09/2026 |
 
 ## 2. Environment used
 
 | Item | Version |
 |------|---------|
-| Operating system | [ e.g. Windows ___ ] |
-| Programming language | Python [ _._._ ] (check with `python --version`) |
-| Editor | Visual Studio Code [ _._ ] |
+| Operating system | Windows 10 Pro |
+| Programming language | Python (3.14.3 |
+| Editor | Visual Studio Code |
 | Terminal used in VS Code | [ Command Prompt / PowerShell ] |
 | Extra libraries | None (standard library only: `sys`, `re`, `math`, `html`, `collections`, `pathlib`) |
 
@@ -31,8 +31,9 @@ Nothing has to be installed: no `pip install` and no virtual environment.
 |------|---------|
 | `subset_construction.py` | The whole program: parser, subset construction, console output and the optional HTML report. |
 | `README.md` | This document. |
-
-[ Add here any other file you decide to include, for example a sample input or `output.html` ]
+| `run.py` | needed to execute the file |
+| `ìnput.txt` | input file to change the NFA values |
+| `output.html`| shows an aesthetic version of the program |
 
 ## 4. Running the program
 
@@ -59,7 +60,7 @@ PowerShell does not support the `<` operator, and CMD does not know `Get-Content
 | CMD | `python subset_construction.py --html output.html < input.txt` |
 | PowerShell | `Get-Content input.txt | python subset_construction.py --html output.html` |
 
-Then open the report with `start output.html` or by double-clicking the file. The report is only created when `--html` is given, and the console output is identical either way.
+Then open the report with `start output.html` or by double-clicking the file. The report is only created when `--html` is given, Use "start output.html" on the terminal to execute.
 
 ### 4.3 Typing the input by hand
 
