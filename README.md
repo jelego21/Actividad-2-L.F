@@ -170,6 +170,7 @@ With `--html`, the program also writes a self-contained web page (no internet or
 - the DFA transition table;
 - a collapsible copy of the input NFA.
 
+
 ## 9. Extra test
 
 Input (NFA that accepts the strings ending in `ab`):
